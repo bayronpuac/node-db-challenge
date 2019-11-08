@@ -63,5 +63,7 @@ function addTask(task) {
 };
 
 function retrieveTasks() {
-    return db('tasks');
-};
+    return db('tasks')
+    .select('tasks.id', 'tasks.description as tasks_description', 'tasks.notes', 'tasks.completed', 'projects.name', 'projects.description as project_description')
+    .join('projects', 'projects.id', 'tasks.project_id')
+}
